@@ -1,0 +1,48 @@
+{% block pageContent %}
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="online bus tickets booking">
+		<meta name="keywords" content="Bus, Traveling, Bus tickets, Booking">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'style/style.css' %}">
+        <title>TRAVEL - online bus tickets booking</title>
+    </head>
+	<body>
+        <main>
+            <section class="img_container">
+                <div class="navigation_in_line">
+                    <h1 class="main_page_h1">TRAVEL</h1>
+                    <nav class="navigation">
+                        <ul>
+                            <li><a href="#" class="navigation_buttons">Sign up</a></li>
+                            <li><a href="#" class="navigation_buttons">Sign in</a></li>
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="main_page_text1">BOOK BUS TISKETS<br>IN A SIMPLE WAY</div>
+                <div class="main_page_text2">Travel all over the world</div>
+                <form class="search search_container">
+                    <input type="text" name="from" list="routes" placeholder="From">
+                    <input type="text" name="to" list="routes" placeholder="To">
+                    <datalist id="routes">
+                        <option label="Gomel" value="Gomel">
+                        <option label="Minsk" value="Minsk">
+                        <option label="Sain-Peterburg" value="Sain-Peterburg">
+                        <option label="Warshaw" value="Warshaw">
+                        <option label="Vienna" value="Vienna">
+                        <option label="Berlin" value="Berlin">
+                    </datalist>
+                    <label for="date"></label>
+                    <input id="date" type="date" min="2022-12-01" max="2023-01-31" required>
+                    <button class="button_book_tickets">Book ticket</button>
+                </form>
+            <div class="admin_link"><a  href="#">Admin</a></div>
+            </section>
+        </main>
+    </body>
+</html>
+{% endblock %}

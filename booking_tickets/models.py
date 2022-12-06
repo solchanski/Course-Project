@@ -1,30 +1,24 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-from django.db.models import Sum
 
-class NotEnoughMoneyException(Exception):
-    pass
-
-class NotEnoughMoneyException(Exception):
-    pass
 
 class Company(models.Model):
     title = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Bus(models.Model):
-    company = models.ForeignKey(Company,on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='company', default=0)
     bus_number = models.CharField(max_length=6)
     bus_type = models.CharField(max_length=30)
     color = models.CharField(max_length=10)
-    seats = models.FloatField(max_length=5)
+    seats = models.IntegerField(default=20)
 
     def __str__(self):
-        return self.bus_number
+        return str(self.bus_type + ' ' + self.bus_number)
 
 
 class Location(models.Model):
@@ -32,11 +26,10 @@ class Location(models.Model):
     country = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.location
+        return str(f"{self.city}, {self.country}")
 
 
 class Route(models.Model):
-    amount = models.IntegerField(verbose_name="Transactional amount", default=0)
     departure_location = models.ForeignKey(
         Location,
         on_delete=models.CASCADE,
@@ -50,47 +43,34 @@ class Route(models.Model):
         related_name="arrival"
     )
 
+    def __str__(self):
+        return str(f"{self.departure_location} - {self.arrival_location}")
+
 
 class Ticket(models.Model):
-    pass
-#     code = models.CharField(max_length=100)
-#     bus = models.ForeignKey(Bus,on_delete=models.CASCADE)
-#     depart = models.ForeignKey(Location,on_delete=models.CASCADE, related_name='depart_location')
-#     destination = models.ForeignKey(Location,on_delete=models.CASCADE, related_name='destination')
-#     schedule= models.DateTimeField()
-#     fare= models.FloatField()
-#
-#     def __str__(self):
-#         return str(self.code + ' - ' + self.bus.bus_number)
-#
-#     def count_available(self):
-#         booked = Booking.objects.filter(schedule=self).aggregate(Sum('seats'))['seats__sum']
-#         return self.bus.seats - booked
-#
-#
+    route = models.ForeignKey(Route, on_delete=models.CASCADE, related_name='route', default=0)
+    bus = models.ForeignKey(Bus, on_delete=models.CASCADE, related_name='route', default=0)
+    from_time = models.TimeField(default=timezone.now)
+    to_time = models.TimeField(default=timezone.now)
+    travel_time = models.CharField(max_length=10, default=0)
+    price = models.FloatField(max_length=10, default=0)
+
+    def __str__(self):
+        return str(f"ROUTE: {self.route} TIME: {self.from_time} - {self.to_time} PRICE: {self.price} BYN")
+
+
 class Date(models.Model):
-    pass
-#     data =
-#
-#
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name='ticket', default=0)
+    available = models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return str(f"{self.available} {self.ticket}")
+
+
 class Order(models.Model):
-    pass
-#     code = models.CharField(max_length=100)
-#     name = models.CharField(max_length=250)
-#     schedule = models.ForeignKey(Schedule,on_delete=models.CASCADE)
-#     seats = models.IntegerField()
-#     status = models.CharField(max_length=2, choices=(('1','Pending'),('2','Paid')), default=1)
-#     date_created = models.DateTimeField(default=timezone.now)
-#     date_updated = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return str(self.code + ' - ' + self.name)
-#
-#     def total_payable(self):
-#         return self.seats * self.schedule.fare
-#
+    available_ticket = models.ForeignKey(Date, on_delete=models.CASCADE, related_name='available_date', default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', default=0)
+    seat = models.IntegerField(default=0)
 
-
-
-
-
+    def __str__(self):
+        return str(f"{self.user} {self.seat}")
