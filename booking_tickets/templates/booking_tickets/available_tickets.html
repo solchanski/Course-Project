@@ -1,22 +1,37 @@
-{% extends 'index.html' %}
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+{% load static %}
+{% block content %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="online bus tickets booking">
+		<meta name="keywords" content="Bus, Traveling, Bus tickets, Booking">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'style_available_tickets.css' %}">
+        <title>TRAVEL - online bus tickets booking</title>
+    </head>
 <body>
-    <section class="ticket_choice_page">
-       <div class="ticket_choice_container">
-           <div>8:30</div>
-           <div>- 3h -</div>
-           <div>11:30</div>
-           <div>FLIXBUS</div>
-           <div>Minsk</div>
-           <div>Gomel</div>
-           <div>19.24 BYN</div>
-           <a href="#" class="button_book_tickets">Book ticket</a>
-       </div>
-    </section>
+    <section class="ticket_choice_page img_container_ordering">
+        <div class="navigation_in_line">
+            <p><a href="/" class="main_page_link">TRAVEL</a></p>
+            <a href="/booking_tickets/personal_account" class="personal_account_button"><img src="{% static 'img/account_icon.png' %}" height="52.8" width="52.8"></a>
+        </div>
+        <div class="ticket_choice_container">
+            <div class="available_tickets_time">
+                <div class="available_ticket_1">8:30</div>
+                <div class="available_ticket_2">- 3h -</div>
+                <div class="available_ticket_3">11:30</div>
+                <div class="available_ticket_4">FLIXBUS</div>
+                <div class="available_ticket_5">Minsk</div>
+                <div class="available_ticket_6">Gomel</div>
+            </div>
+            <div class="available_tickets_price">
+                <div class="available_ticket_7">19.24 BYN</div>
+                <div class="available_ticket_8">24 seats</div>
+                <a href="/booking_tickets/ordering" class="button_book_tickets available_ticket_9">Book ticket</a>
+            </div>
+        </div>
+   </section>
 </body>
 </html>
+{% endblock %}

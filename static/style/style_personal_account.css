@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+body {
+    font-family: 'Nunito', sans-serif;
+    font-family: 'Jockey One', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    padding-inline-start: 0;
+    margin: 0;
+}
+
+html{
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+.img_container_personal_account {
+    width:100%;
+    height:745px;
+    background-image: url("./img/personal_account.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.navigation_in_line {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+}
+
+p {
+    margin: 0;
+    padding-left: 50px;
+    padding-top: 40px;
+}
+
+.main_page_link{
+    font-family: 'Jockey One', sans-serif;
+    font-weight: 700px;
+    font-size: 40px;
+    line-height: 67px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.logout_button {
+    display: block;
+    font-family: 'Nunito';
+    font-weight: 400;
+    font-size: 24px;
+    color: white;
+    padding: 10px  35px 10px 35px;
+    text-decoration: none;
+    background-color: #0500FF;
+    border-radius: 50px;
+    border: none;
+    margin-top: 50px;
+    margin-right: 50px;
+}
+
+.logout_button:hover {
+    background-color: #0300cb;
+}
+
+.user_inf {
+    font-family: 'Nunito';
+    font-weight: 400;
+    font-size: 24px;
+    color: white;
+    padding: 0;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 60px
+}
+
+.ticket1 {
+    width: 520px;
+    background-color: #ffffff;
+    border-radius: 50px;
+    margin-left: 250px;
+    margin-top: 110px;
+    padding-bottom: 30px;
+}
+
+.ticket2 {
+    display: grid;
+    grid-template-columns: 180px  180px 100px;
+    grid-template-rows: 45px 50px 45px 25px;
+    background-color: #e5e5e5;
+    border-radius: 50px 50px 0 0;
+    margin-left: 0;
+    margin-top: 110px;
+    padding: 30px;
+    padding-bottom: 20px;
+}
+
+.div1 { grid-area: 1 / 1 / 2 / 2;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.div2 { grid-area: 1 / 2 / 2 / 3;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.div3 { grid-area: 1 / 3 / 2 / 4;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.div4 { grid-area: 2 / 1 / 3 / 2;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.div5 { grid-area: 2 / 3 / 3 / 4;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.div6 { grid-area: 3 / 1 / 4 / 2;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+}
+.div7 { grid-area: 4 / 1 / 5 / 2;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.div8 { grid-area: 4 / 3 / 5 / 4;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.return_ticket {
+    display: block;
+    font-family: 'Nunito';
+    font-weight: 400;
+    font-size: 24px;
+    color: white;
+    padding: 10px  35px 10px 35px;
+    text-decoration: none;
+    background-color: #0500FF;
+    border-radius: 50px;
+    border: none;
+    margin-top: 20px;
+    margin-left: 155px;
+    margin-right: 155px;
+}
+
+.ticket_bottom {
+    display: grid;
+    grid-template-columns: 360px 100px;
+    margin-left: 30px;
+    margin-top: 20px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.div9 {
+    color: #0500FF;
+}
+
+.return_ticket:hover {
+    background-color: #0300cb;
+}

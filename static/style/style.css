@@ -1,10 +1,7 @@
-{% load static %}
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-
-/* INDEX */
 
 body {
     font-family: 'Nunito', sans-serif;
@@ -21,13 +18,12 @@ html{
     scroll-behavior: smooth;
 }
 
-.navigation li {
-    display: inline;
-    list-style: none;
-}
-
 .navigation {
-    margin-left: 300px;
+    margin-left: 350px;
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: 162px 140px 60px;
+    height: 50px;
 }
 
 .navigation_in_line {
@@ -45,15 +41,26 @@ html{
     text-decoration: none;
     background-color: #ffffff;
     border-radius: 50px;
-    margin-top: 30px;
     margin-right: 10px;
     border: none;
+    margin-top: 15px;
+}
+
+.personal_account_button {
+    width: 55px;
+    height: 55px;
+    display: block;
+    margin-top: 15px;
+}
+
+.navigation_buttons:hover {
+    background-color: #E5E5E5;
 }
 
 .img_container {
     width:100%;
     height:745px;
-    /*background-image: src="{% static 'img/img_background.png' %}";*/
+    background-image: url("./img/img_background.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -62,6 +69,7 @@ html{
 .main_page_h1{
     font-family: 'Jockey One';
     font-style: normal;
+    font-weight: 400;
     font-size: 40px;
     line-height: 67px;
     color: #FFFFFF;
@@ -95,50 +103,66 @@ html{
 
 .search_container {
     background-color: #ffffff;
-    padding: 15px;
-    border-radius: 50px;
+    padding: 20px;
+    border-radius: 55px;
     margin-right: 600px;
     margin-left: 50px;
     margin-top: 100px;
     margin-bottom: 20px;
-    
-    /* height: 60px; */
+    width: 755px;
 }
 
 .button_book_tickets {
     display: inline-block;
-    border: none;
-    background-color: #0500FF;
-    border-radius: 50px;
     font-family: 'Nunito';
-    font-style: normal;
     font-weight: 400;
     font-size: 24px;
     color: white;
-    padding: 15px  45px 15px 45px;
+    padding: 15px 45px 15px 45px;
     text-decoration: none;
+    background-color: #0500FF;
+    border-radius: 50px;
+    border: none;
+    margin-left: 20px;
 }
 
-.admin_link {
-    margin-left: 50px;
+.button_book_tickets:hover {
+    background-color: #0300cb;
+}
+
+.ticket_filter {
+    border: 2px solid white;
+    font-family: 'Nunito';
+    font-size: 24px;
+    width: 210px;
+    border-radius: 50px;
+    padding: 10px;
+}
+
+.ticket_filter_date {
+    width: 25px;
+    border-radius: 50px;
+    padding: 10px;
+    border: none;o
+    font-family: 'Nunito';
+    font-size: 24px;
+}
+
+.ticket_filter:focus {
+    outline: 0;
+    border:2px solid #ffffff;
+}  
+
+.ticket_filter_date:focus {
+    outline: 0;
+}
+
+.admin_link {    
+    margin-right: 50px;
     font-family: 'Nunito';
     font-size: 14px;
+    text-decoration: none;
+    color: white;
+    text-align: right;
+    display: block;
 }
-
-
-/* AVAILABLE TICKETS */
-
-.ticket_choice_page {
-    width:100%;
-    height:745px;
-}
-
-.ticket_choice_container {
-    padding: 20px;
-    margin-left: 325px;
-    margin-top: 50px;
-    margin-right: 325px;
-    background-color: #ffffff;
-    border-radius: 20px;
-}
-
