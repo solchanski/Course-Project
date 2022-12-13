@@ -16,21 +16,26 @@
             <p><a href="/" class="main_page_link">TRAVEL</a></p>
             <a href="/booking_tickets/personal_account" class="personal_account_button"><img src="{% static 'img/account_icon.png' %}" height="52.8" width="52.8"></a>
         </div>
-        <div class="ticket_choice_container">
-            <div class="available_tickets_time">
-                <div class="available_ticket_1">8:30</div>
-                <div class="available_ticket_2">- 3h -</div>
-                <div class="available_ticket_3">11:30</div>
-                <div class="available_ticket_4">FLIXBUS</div>
-                <div class="available_ticket_5">Minsk</div>
-                <div class="available_ticket_6">Gomel</div>
-            </div>
-            <div class="available_tickets_price">
-                <div class="available_ticket_7">19.24 BYN</div>
-                <div class="available_ticket_8">24 seats</div>
-                <a href="/booking_tickets/ordering" class="button_book_tickets available_ticket_9">Book ticket</a>
-            </div>
-        </div>
+        <form method="post">
+            {% csrf_token %}
+            {% for available_ticket in tickets %}
+                <div class="ticket_choice_container">
+                    <div class="available_tickets_time">
+                        <div class="available_ticket_1">{{ available_ticket.ticket.from_time }}</div>
+                        <div class="available_ticket_2">- {{ available_ticket.ticket.travel_time }} -</div>
+                        <div class="available_ticket_3">{{ available_ticket.ticket.to_time }}</div>
+                        <div class="available_ticket_4">{{ available_ticket.ticket.bus.company.title }}</div>
+                        <div class="available_ticket_5">{{ available_ticket.ticket.route.departure_location }}</div>
+                        <div class="available_ticket_6">{{ available_ticket.ticket.route.arrival_location }}</div>
+                    </div>
+                    <div class="available_tickets_price">
+                        <div class="available_ticket_7">{{ available_ticket.ticket.price }} BYN</div>
+                        <div class="available_ticket_8">{{ available_ticket.ticket.bus.seat }} seats</div>
+                        <button class="button_book_tickets available_ticket_9" href="{% url 'create_order' available_ticket.pk %}">Book ticket</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </form>
    </section>
 </body>
 </html>

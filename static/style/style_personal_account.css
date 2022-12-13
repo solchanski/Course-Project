@@ -19,11 +19,15 @@ html{
 
 .img_container_personal_account {
     width:100%;
-    height:745px;
+    height: 2000px;
     background-image: url("./img/personal_account.jpg");
-    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+.img_container_delete {
+    height: 745px;
+    background-color: black;
 }
 
 .navigation_in_line {
@@ -47,6 +51,7 @@ p {
 }
 
 .logout_button {
+    text-align: center;
     display: block;
     font-family: 'Nunito';
     font-weight: 400;
@@ -76,23 +81,34 @@ p {
     margin-top: 60px
 }
 
+.user_inf_del {
+    font-family: 'Nunito';
+    font-weight: 400;
+    font-size: 24px;
+    color: white;
+    padding: 0;
+    text-align: right;
+    margin-right: 50px;
+    margin-top: 60px
+}
+
 .ticket1 {
-    width: 520px;
+    width: 600px;
     background-color: #ffffff;
     border-radius: 50px;
     margin-left: 250px;
-    margin-top: 110px;
+    margin-top: 80px;
     padding-bottom: 30px;
 }
 
 .ticket2 {
     display: grid;
-    grid-template-columns: 180px  180px 100px;
+    grid-template-columns: 180px  180px 180px;
     grid-template-rows: 45px 50px 45px 25px;
     background-color: #e5e5e5;
     border-radius: 50px 50px 0 0;
     margin-left: 0;
-    margin-top: 110px;
+    margin-top: 80px;
     padding: 30px;
     padding-bottom: 20px;
 }
@@ -167,11 +183,12 @@ p {
     margin-top: 20px;
     margin-left: 155px;
     margin-right: 155px;
+    text-align: center;
 }
 
 .ticket_bottom {
     display: grid;
-    grid-template-columns: 360px 100px;
+    grid-template-columns: 360px 180px;
     margin-left: 30px;
     margin-top: 20px;
     font-family: 'Roboto';
@@ -185,4 +202,48 @@ p {
 
 .return_ticket:hover {
     background-color: #0300cb;
+}
+
+.return_ticket_h1 {
+    text-align: center;
+    font-family: 'Nunito';
+    font-weight: 400;
+    font-size: 48px;
+    color: white;
+    padding: 0;
+    margin-top: 150px;
+}
+
+.return_ticket_del {
+    display: block;
+    font-family: 'Nunito';
+    font-weight: 400;
+    font-size: 36px;
+    color: white;
+    padding: 10px  35px 10px 35px;
+    text-decoration: none;
+    background-color: #0500FF;
+    border-radius: 50px;
+    border: none;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.return_ticket_del:hover {
+    background-color: #0300cb;
+}
+
+.back_to_tickets {
+    display: block;
+    margin-top: 240px;
+    margin-left: 50px;
+    font-size: 18px;
+    font-family: 'Nunito';
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.back_to_tickets:hover {
+    text-decoration: underline;
 }

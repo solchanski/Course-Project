@@ -1,94 +1,68 @@
-from django.views.generic import DetailView, FormView
+from django.views.generic import DetailView, FormView, DeleteView, CreateView
 from django.views.generic.list import ListView
-from django.shortcuts import render, redirect
-from django.views import View
-
-from django.contrib.auth.models import User
-from booking_tickets.forms import CreateAccountForm, LoginForm, AvailableTicketsForm, PersonalAccountForm, OrderingForm
-
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
+from django.contrib.auth.views import LoginView
+from booking_tickets.forms import *
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-import json
-from django.http import HttpResponse
+from django.http import request, HttpResponse, HttpRequest, HttpResponseRedirect
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 class CreateAccountView(FormView):
     form_class = CreateAccountForm
-    template_name = "booking_tickets/sign_up.html"
-    success_url = "/booking_tickets/"
+    template_name = "registration/sign_up.html"
+    success_url = "/booking_tickets/login"
 
     def form_valid(self, form):
-        new_user = User(**form.cleaned_data)
-        new_user.save()
+        form.save()
         return super().form_valid(form)
 
 
-class LoginView(FormView):
+class LoginUser(LoginView):
     form_class = LoginForm
-    template_name = "booking_tickets/login.html"
-    success_url = "/booking_tickets/"
+    template_name: "registration/login.html"
 
-    def form_valid(self, form):
-        new_user = User(**form.cleaned_data)
-        new_user.save()
-        return super().form_valid(form)
+    def get_success_url(self):
+        return reverse('index')
 
 
-class AvailableTicketsView(FormView):
-    form_class = AvailableTicketsForm
-    template_name = "booking_tickets/available_tickets.html"
-    success_url = "/booking_tickets/"
-
-    def form_valid(self, form):
-        new_user = User(**form.cleaned_data)
-        new_user.save()
-        return super().form_valid(form)
-
-
-class PersonalAccountView(FormView):
-    form_class = PersonalAccountForm
+class PersonalAccountView(ListView, LoginRequiredMixin):
+    model = Order
     template_name = "booking_tickets/personal_account.html"
-    success_url = "/booking_tickets/"
+    success_url = "/booking_tickets/personal_account"
 
-    def form_valid(self, form):
-        new_user = User(**form.cleaned_data)
-        new_user.save()
-        return super().form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        u = self.request.user
+        orders = Order.objects.filter(user=u).select_related("available_ticket").all()
+        context['orders'] = orders
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        user = self.request.user
+        if user.is_authenticated:
+            queryset = queryset.filter(user=user)
+        return queryset
 
 
-class OrderingView(FormView):
-    form_class = OrderingForm
-    template_name = "booking_tickets/ordering.html"
-    success_url = "/booking_tickets/"
-
-    def form_valid(self, form):
-        new_user = User(**form.cleaned_data)
-        new_user.save()
-        return super().form_valid(form)
+class DeleteOrderView(DeleteView):
+    model = Order
+    template_name = "booking_tickets/order_delete.html"
+    success_url = '/'
 
 
+class AvailableTicketsView(ListView, LoginRequiredMixin):
+    model = Order
+    template_name = "booking_tickets/available_tickets.html"
+    success_url = "/booking_tickets/personal_account"
 
-# def login_user(request):
-#     logout(request)
-#     resp = {"status": 'failed', 'msg': ''}
-#     username = ''
-#     password = ''
-#     if request.POST:
-#         username = request.POST['username']
-#         password = request.POST['password']
-#
-#         user = authenticate(username=username, password=password)
-#         if user is not None:
-#             if user.is_active:
-#                 login(request, user)
-#                 resp['status'] = 'success'
-#             else:
-#                 resp['msg'] = "Incorrect username or password"
-#         else:
-#             resp['msg'] = "Incorrect username or password"
-#     return HttpResponse(json.dumps(resp), content_type='application/json')
-#
-#
-# def logoutuser(request):
-#     logout(request)
-#     return redirect('/')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tickets = Date.objects.select_related("ticket").all()
+        context['tickets'] = tickets
+        return context

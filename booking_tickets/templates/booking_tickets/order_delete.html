@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+{% load static %}
+{% block content %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="online bus tickets booking">
+		<meta name="keywords" content="Bus, Traveling, Bus tickets, Booking">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'style_personal_account.css' %}">
+        <title>TRAVEL - online bus tickets booking</title>
+    </head>
+    <body>
+        <section class="img_container_delete">
+            <div class="navigation_in_line">
+                <p><a href="/" class="main_page_link">TRAVEL</a></p>
+                <p class="user_inf_del">{{ user.first_name }} {{ user.last_name }}</p>
+            </div>
+            <div>
+                <h1 class="return_ticket_h1">Do you want to return ticket?</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    <button class="return_ticket_del" type="submit">Return ticket</button>
+                </form>
+            </div>
+            <a href="/booking_tickets/personal_account" class="back_to_tickets">Back to bookings</a>
+            </section>
+    </body>
+</html>
+{% endblock %}

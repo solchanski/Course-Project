@@ -1,5 +1,5 @@
 from django.contrib import admin
-from booking_tickets.models import Company, Bus, Location, Route, Ticket, Date, Order
+from booking_tickets.models import *
 
 
 class DateAdmin(admin.ModelAdmin):

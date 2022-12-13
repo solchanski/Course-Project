@@ -19,11 +19,11 @@ html{
 }
 
 .navigation {
-    margin-left: 350px;
     padding-top: 30px;
     display: grid;
-    grid-template-columns: 162px 140px 60px;
+    grid-template-columns: 305px 60px;
     height: 50px;
+    margin-left: 350px;
 }
 
 .navigation_in_line {
@@ -31,7 +31,15 @@ html{
     grid-template-columns: repeat(2, 1fr);
 }
 
+.login_buttons {
+    display: grid;
+    grid-template-columns: 165px 140px;
+    grid-template-rows: 67.8px;
+    height: 50px;
+}
+
 .navigation_buttons {
+    text-align: center;
     display: inline-block;
     font-family: 'Nunito';
     font-style: normal;
@@ -44,6 +52,17 @@ html{
     margin-right: 10px;
     border: none;
     margin-top: 15px;
+}
+
+.main_page_user_inf {
+    font-family: 'Nunito';
+    font-weight: 400;
+    font-size: 24px;
+    color: white;
+    padding: 0;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 25px;
 }
 
 .personal_account_button {
@@ -137,6 +156,7 @@ html{
     width: 210px;
     border-radius: 50px;
     padding: 10px;
+    width: 230px;
 }
 
 .ticket_filter_date {

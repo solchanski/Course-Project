@@ -20,9 +20,22 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="68a702ef-bc97-499a-b031-f022499e78f7" dataset="public.booking_tickets_ticket" active-filter-id="21206886-afa8-448f-9487-63a40d232bb1">
+      <filter id="9d78e916-4615-42d7-8dba-ebd6e77b5116" name="Filter 2" temporary="false" custom-name="false" type="basic" join-type="AND" />
+      <filter id="21206886-afa8-448f-9487-63a40d232bb1" name="Filter" temporary="false" custom-name="false" type="custom">
+        <condition><![CDATA[bus_id=1]]></condition>
+      </filter>
+    </filter-actions>
     <filter-actions connection-id="68a702ef-bc97-499a-b031-f022499e78f7" dataset="public.auth_group" active-filter-id="" />
     <filter-actions connection-id="68a702ef-bc97-499a-b031-f022499e78f7" dataset="public.booking_tickets_bus" active-filter-id="" />
-    <filter-actions connection-id="68a702ef-bc97-499a-b031-f022499e78f7" dataset="public.booking_tickets_order" active-filter-id="" />
+    <filter-actions connection-id="68a702ef-bc97-499a-b031-f022499e78f7" dataset="public.auth_user" active-filter-id="2d2c763c-ab64-47a5-a50c-ef661c7bb68d">
+      <filter id="2d2c763c-ab64-47a5-a50c-ef661c7bb68d" name="true" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="is_staff" operator="=" value="true" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="68a702ef-bc97-499a-b031-f022499e78f7" dataset="public.booking_tickets_order" active-filter-id="7ff0eb26-7d39-4936-9e9b-8d7c773776ca">
+      <filter id="7ff0eb26-7d39-4936-9e9b-8d7c773776ca" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
     <filter-actions connection-id="68a702ef-bc97-499a-b031-f022499e78f7" dataset="public.django_migrations" active-filter-id="bd1aec7d-74a0-4f70-9b1f-51e46f47c83f">
       <filter id="bd1aec7d-74a0-4f70-9b1f-51e46f47c83f" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>

@@ -15,24 +15,29 @@
             <div class="navigation_in_line">
                 <p><a href="/" class="main_page_link">TRAVEL</a></p>
                 <p class="user_inf">{{ user.first_name }} {{ user.last_name }}</p>
-                <div><a class="logout_button" href="/">Logout</a></div>
+                <div><a class="logout_button" href="/booking_tickets/logout">Logout</a></div>
             </div>
-            <form class="ticket1">
-                <div class="ticket2">
-                    <div class="div1">8:30</div>
-                    <div class="div2">- 3h -</div>
-                    <div class="div3">11:30</div>
-                    <div class="div4">Minsk</div>
-                    <div class="div5">Gomel</div>
-                    <div class="div6">FLIXBUS</div>
-                    <div class="div7">Renault Trafic </div>
-                    <div class="div8">2345-8</div>
-                </div>
-                <div class="ticket_bottom">
-                    <div class="div9">19.24 BYN</div>
-                    <div>Seat: 3</div>
-                </div>
-                <a class="return_ticket" href="/">Return ticket</a>
+            <form method="get">
+                {% csrf_token %}
+                {% for order in orders %}
+                    <div class="ticket1">
+                        <div class="ticket2">
+                                <div class="div1">{{ order.available_ticket.ticket.from_time }}</div>
+                                <div class="div2">- {{ order.available_ticket.ticket.travel_time }} -</div>
+                                <div class="div3">{{ order.available_ticket.ticket.to_time }}</div>
+                                <div class="div4">{{ order.available_ticket.ticket.route.departure_location }}</div>
+                                <div class="div5">{{ order.available_ticket.ticket.route.arrival_location }}</div>
+                                <div class="div6">{{ order.available_ticket.ticket.bus.company.title }}</div>
+                                <div class="div7">{{ order.available_ticket.ticket.bus.bus_type }}</div>
+                                <div class="div8">{{ order.available_ticket.ticket.bus.bus_number }}</div>
+                        </div>
+                        <div class="ticket_bottom">
+                            <div class="div9">{{ order.available_ticket.ticket.price }} BYN</div>
+                            <div>{{ order.available_ticket.available }}</div>
+                        </div>
+                        <a class="return_ticket" href="{% url 'delete_order' order.pk %}">Return ticket</a>
+                    </div>
+                {% endfor %}
             </form>
         </section>
     </body>

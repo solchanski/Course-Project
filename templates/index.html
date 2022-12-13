@@ -15,31 +15,33 @@
             <section class="img_container">
                 <div class="navigation_in_line">
                     <p class="main_page_h1">TRAVEL</p>
-                    <nav class="navigation">
-                            <a href="booking_tickets/sign_up/" class="navigation_buttons">Sign up</a>
-                            <a href="booking_tickets/login/" class="navigation_buttons">Login</a>
-                            <a href="booking_tickets/personal_account/" class="personal_account_button"><img src="{% static 'img/account_icon.png' %}" height="52.8" width="52.8"></a>
-                    </nav>
+                    <div class="navigation">
+                            {% if user.is_authenticated %}
+                            <div class="main_page_user_inf">{{ user.first_name }} {{ user.last_name }}</div>
+                            {% else %}
+                            <div class="login_buttons">
+                                <a href="booking_tickets/sign_up/" class="navigation_buttons">Sign up</a>
+                                <a href="booking_tickets/login/" class="navigation_buttons">Login</a>
+                            </div>
+                            {% endif %}
+                            <a href="booking_tickets/personal_account/" class="personal_account_button"><img
+                                    src="{% static 'img/account_icon.png' %}" height="52.8" width="52.8"></a>
+                    </div>
                 </div>
                 <div class="main_page_text1">BOOK BUS TICKETS<br>IN A SIMPLE WAY</div>
                 <div class="main_page_text2">Travel all over the world</div>
-                <section class="search search_container">
-                    <input class="ticket_filter" type="text" name="from" list="cities" placeholder="From">
-                    <input class="ticket_filter" type="text" name="to" list="cities" placeholder="To">
-                    <datalist id="cities">
-                        <option label="Gomel" value="Gomel">
-                        <option label="Minsk" value="Minsk">
-                        <option label="Saint-Peterburg" value="Saint-Peterburg">
-                        <option label="Warshaw" value="Warshaw">
-                        <option label="Vienna" value="Vienna">
-                        <option label="Berlin" value="Berlin">
-                    </datalist>
-                    <input class="ticket_filter_date" id="date" type="date" min="2022-12-01" max="2023-01-31" required placeholder="">
-                    <a href="booking_tickets/available_tickets/" class="button_book_tickets">Book ticket</a>
-                </section>
+                <form id="location" action="/booking_tickets/available_tickets/" class="search search_container" method="get">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{ field }}
+                    {% endfor %}
+                    <button type="submit" class="button_book_tickets">Book ticket</button>
+                </form>
                 <a class="admin_link" href="admin/">Admin</a>
             </section>
         </main>
     </body>
 </html>
 {% endblock %}
+
+

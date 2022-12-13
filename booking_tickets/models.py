@@ -55,6 +55,9 @@ class Ticket(models.Model):
     travel_time = models.CharField(max_length=10, default=0)
     price = models.FloatField(max_length=10, default=0)
 
+    def get_tickets(self):
+        return self.tickets_set.all()
+
     def __str__(self):
         return str(f"ROUTE: {self.route} TIME: {self.from_time} - {self.to_time} PRICE: {self.price} BYN")
 
@@ -68,9 +71,9 @@ class Date(models.Model):
 
 
 class Order(models.Model):
-    available_ticket = models.ForeignKey(Date, on_delete=models.CASCADE, related_name='available_date', default=0)
+    available_ticket = models.ForeignKey(Date, on_delete=models.CASCADE, related_name='available_ticket', default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', default=0)
-    seat = models.IntegerField(default=0)
+    seat = models.IntegerField(default=1)
 
     def __str__(self):
         return str(f"{self.user} {self.seat}")

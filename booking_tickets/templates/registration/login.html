@@ -13,13 +13,15 @@
     <body>
         <section class="img_container_login">
             <p><a href="/" class="main_page_link">TRAVEL</a></p>
-            <h1 class="login_h1">Login</h1>
-            <form class="login_form">
-                <input class="login_form_input" type="text" name="username" placeholder="Username">
-                <input class="login_form_input" type="text" name="password"  placeholder="Password">
-                <a class="login_buttons" href="/">Sign in</a>
+            <form id="login" class="login_form" method="post">
+                <h1 class="login_h1">Login</h1>
+                {% csrf_token %}
+                {% for field in form %}
+                <div>{{ field }}</div>
+                {% endfor %}
+                <button type="submit" class="login_buttons">Sign in</button>
                 <a class="create_account_link" href="/booking_tickets/sign_up">Create an account</a>
-            </form><
+            </form>
         </section>
     </body>
 </html>
